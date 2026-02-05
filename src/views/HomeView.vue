@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import ProductList from "../components/ProductList.vue";
+</script>
 
 <template>
-  <main>Home</main>
+  <div>
+    <ProductList />
+  </div>
 </template>
