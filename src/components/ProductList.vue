@@ -49,7 +49,7 @@ function addToCart(product) {
       :key="product.id"
       class="border p-4 rounded shadow flex flex-col items-center justify-center"
     >
-      <img :src="product.url" :alt="product.name" class="w-10 h-10" />
+      <img :src="product.url" :alt="product.name" class="w-25 h-25" />
       <h3 class="font-bold text-lg">{{ product.name }}</h3>
       <p class="text-gray-600">${{ product.price.toFixed(2) }}</p>
       <button
