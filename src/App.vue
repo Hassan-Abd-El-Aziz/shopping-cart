@@ -1,5 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import { ShoppingCartIcon } from "@heroicons/vue/24/solid";
+import { useCartStore } from "@/stores/Cart";
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -12,7 +15,14 @@ import { RouterLink, RouterView } from "vue-router";
             <RouterLink to="/">Home</RouterLink>
           </li>
           <li>
-            <RouterLink to="/cart">Cart</RouterLink>
+            <RouterLink to="/cart" class="relative">
+              <span> <ShoppingCartIcon class="w-5 h-5 inline-block" /> </span>
+              <span
+                v-if="cartStore.cartCount > 0"
+                class="bg-red-600 rounded-2xl px-1.5 text-xs py-0.5 text-white absolute top-[-8px] right-[-16px]"
+                >{{ cartStore.cartCount }}</span
+              >
+            </RouterLink>
           </li>
         </ul>
       </nav>

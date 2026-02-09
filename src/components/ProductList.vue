@@ -1,4 +1,5 @@
 <script setup>
+import { useCartStore } from "@/stores/Cart";
 const products = [
   {
     id: 1,
@@ -37,9 +38,10 @@ const products = [
     url: "https://i.ibb.co/dw1F3H8F/P1.png",
   },
 ];
+
+const cartStore = useCartStore();
 function addToCart(product) {
-  // Emit event to parent component
-  emit("add-to-cart", product);
+  cartStore.addItem(product);
 }
 </script>
 <template>
