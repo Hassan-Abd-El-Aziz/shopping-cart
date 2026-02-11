@@ -17,6 +17,15 @@ const remove = (id) => {
     <h2 class="text-2xl font-bold mb-4">
       Shopping Cart ({{ cartStore.cartCount }} items)
     </h2>
+    <div v-if="cartStore.items.length === 0" class="text-gray-500">
+      <p class="mb-3 block">Your cart is empty.</p>
+      <router-link
+        to="/"
+        class="text-sm p-3 bg-teal-500 text-white hover:bg-teal-400"
+        >Browse products
+      </router-link>
+    </div>
+
     <ul>
       <li class="flex justify-between items-center border-b py-2">
         <span class="font-semibold">Product Name</span>
@@ -24,7 +33,8 @@ const remove = (id) => {
         <span class="font-semibold">Price</span>
         <span class="font-semibold">Subtotal</span>
         <span class="font-semibold">Quantity</span>
-        <span class="font-semibold">Total</span>
+
+        <span class="font-semibold">Actions</span>
       </li>
       <li
         v-for="item in cartStore.items"
@@ -35,6 +45,7 @@ const remove = (id) => {
         <img :src="item.url" :alt="item.name" class="w-10 h-10" />
         <span>${{ item.price.toFixed(2) }}</span>
         <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
+        <span>{{ item.quantity }}</span>
         <div class="flex justify-between items-center">
           <button
             type="button"
@@ -60,11 +71,12 @@ const remove = (id) => {
         </div>
       </li>
     </ul>
-    <div class="mt-4 font-bold">
+    <div class="mt-4 font-bold" v-if="cartStore.items.length > 0">
       Total: {{ cartStore.cartTotal.toFixed(2) }}
     </div>
     <button
       @click="cartStore.clearCart()"
+      v-if="cartStore.items.length > 0"
       class="mt-4 block bg-red-500 text-white px-3 py-1 hover:bg-red-600"
     >
       clear cart
